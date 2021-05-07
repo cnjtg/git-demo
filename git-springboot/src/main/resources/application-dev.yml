@@ -2,3 +2,11 @@ server:
   port: 8088
   servlet:
     context-path: /
+
+
+user:
+  username: ${random.value}
+  age: "${random.int(0,100)}"
+  hobbies: ['游戏','运动']
+  birthday: 2020/01/01
+  uuid: ${random.uuid}
