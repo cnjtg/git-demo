@@ -1,6 +1,6 @@
 package com.cnjtg.gitspringboot;
 
-import com.cnjtg.gitspringboot.beans.User;
+import com.cnjtg.gitspringboot.beans.Bean;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,11 +10,11 @@ class GitSpringbootApplicationTests {
 
 
     @Autowired
-    private User user;
+    private Bean bean;
 
     @Test
     void contextLoads() {
-        System.out.println(user.toString());
+        System.out.println(bean.toString());
     }
 
 

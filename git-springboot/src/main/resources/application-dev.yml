@@ -10,3 +10,8 @@ user:
   hobbies: ['游戏','运动']
   birthday: 2020/01/01
   uuid: ${random.uuid}
+
+logging:
+  level:
+    com:
+      cnjtg: trace
