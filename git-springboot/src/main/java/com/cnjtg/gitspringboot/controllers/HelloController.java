@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.UUID;
+
 /**
  * @author cnjtg
  * @version 1.0
@@ -22,8 +24,12 @@ public class HelloController {
     }
 
     @GetMapping("/getUser")
-    public Object getUser(){
+    public Results getUser(){
         User user  = new User();
+        user.setUsername(UUID.randomUUID().toString());
+        user.setUsername("tom");
+        user.setPassword("1234");
+        user.setAddress("广州");
         return Results.SUCCESS("成功！",user);
     }
 }

@@ -1,5 +1,6 @@
 package com.cnjtg.gitspringboot.beans;
 
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -8,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
  * @date 2021-05-08 9:57
  */
 @Slf4j
+@Data
 public class Results {
     private int code;
     private String message;
@@ -32,6 +34,6 @@ public class Results {
         return new Results(ERROR, message, data);
     }
 
-    private final static int SUCCESS = 1;
+    private final static int SUCCESS = 200;
     private final static int ERROR = -1;
 }
