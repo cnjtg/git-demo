@@ -1,0 +1,31 @@
+server:
+  port: 80
+  servlet:
+    context-path: /
+
+
+user:
+  username: ${random.value}
+  age: "${random.int(0,100)}"
+  hobbies: ['游戏','运动']
+  birthday: 2020/01/01
+  uuid: ${random.uuid}
+
+logging:
+  level:
+    com:
+      cnjtg: info
+spring:
+#  mvc:
+#    view:
+#      prefix: classpath:/pages/
+#      suffix: .html
+  thymeleaf:
+    prefix: classpath:/pages/
+    suffix: .html
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/db2020?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: root
