@@ -23,3 +23,9 @@ spring:
   thymeleaf:
     prefix: classpath:/pages/
     suffix: .html
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/db2020?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: root
