@@ -1,5 +1,5 @@
 server:
-  port: 8088
+  port: 80
   servlet:
     context-path: /
 
@@ -14,4 +14,12 @@ user:
 logging:
   level:
     com:
-      cnjtg: trace
+      cnjtg: info
+spring:
+#  mvc:
+#    view:
+#      prefix: classpath:/pages/
+#      suffix: .html
+  thymeleaf:
+    prefix: classpath:/pages/
+    suffix: .html
