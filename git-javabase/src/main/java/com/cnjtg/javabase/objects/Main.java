@@ -12,5 +12,7 @@ public class Main {
         System.out.println("sum1=="+sum);
         double sum1 = test.sum(3.4);
         System.out.println("sum1="+sum1);
+
+        System.out.println(test.sub(3,6));
     }
 }
