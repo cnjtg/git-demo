@@ -28,11 +28,19 @@ public class Results {
     public static Results SUCCESS(String message) {
         return new Results(SUCCESS, message, null);
     }
+    public static Results SUCCESS() {
+        return new Results(SUCCESS, "", null);
+    }
 
     public static Results ERROR(String message, Object data) {
         log.error(message,data);
         return new Results(ERROR, message, data);
     }
+    public static Results ERROR(String message)  {
+        log.error(message);
+        return new Results(ERROR, message, null);
+    }
+
 
     private final static int SUCCESS = 200;
     private final static int ERROR = -1;

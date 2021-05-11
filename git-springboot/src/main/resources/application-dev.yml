@@ -7,7 +7,7 @@ server:
 user:
   username: ${random.value}
   age: "${random.int(0,100)}"
-  hobbies: ['游戏','运动']
+  hobbies: [ '游戏','运动' ]
   birthday: 2020/01/01
   uuid: ${random.uuid}
 
@@ -16,12 +16,9 @@ logging:
     com:
       cnjtg: info
 spring:
-#  mvc:
-#    view:
-#      prefix: classpath:/pages/
-#      suffix: .html
-  thymeleaf:
-    prefix: classpath:/pages/
+  freemarker:
+    cache: false
+    charset: utf-8
     suffix: .html
 
   datasource:

@@ -2,10 +2,10 @@ package com.cnjtg.gitspringboot.rest;
 
 import com.cnjtg.gitspringboot.beans.Results;
 import com.cnjtg.gitspringboot.beans.User;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -25,5 +25,26 @@ public class UserResource {
         user.setPassword("1234");
         user.setAddress("广州");
         return Results.SUCCESS("成功！", user);
+    }
+
+    @PutMapping("updateUser")
+    public Results updateUser(User user) {
+        //TODO 修改用户
+        return Results.SUCCESS();
+    }
+
+    @DeleteMapping("deleteUser")
+    public Results deleteUser(String id) {
+
+        return Results.SUCCESS();
+    }
+
+    @GetMapping("/listUser")
+    public Results listUser() {
+        List<User> list = new ArrayList<>();
+
+        Results results = Results.SUCCESS();
+        results.setData(list);
+        return results;
     }
 }
