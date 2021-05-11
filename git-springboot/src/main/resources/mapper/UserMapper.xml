@@ -1,0 +1,29 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnjtg.gitspringboot.mapper.UserMapper">
+
+    <resultMap id="BaseResultMap" type="com.cnjtg.gitspringboot.entity.User">
+        <result property="uuid" column="uuid"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="address" column="address"/>
+    </resultMap>
+
+    <sql id="BaseColumn">
+        uuid, username, password, address
+    </sql>
+
+    <select id="getById" parameterType="String" resultMap="BaseResultMap">
+        select *
+        from git_user
+        where uuid = #{uuid}
+    </select>
+
+    <select id="list" resultMap="BaseResultMap">
+        select <include refid="BaseColumn"/> from git_user gu
+    </select>
+
+    <insert
+            id="saveUser" parameterType="com.cnjtg.gitspringboot.entity.User">
+        insert into git_user(uuid, username, password, address) value (#{uuid}, #{username}, #{password}, #{address})
+    </insert>
+</mapper>

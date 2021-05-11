@@ -1,7 +1,9 @@
 package com.cnjtg.gitspringboot.rest;
 
 import com.cnjtg.gitspringboot.beans.Results;
-import com.cnjtg.gitspringboot.beans.User;
+import com.cnjtg.gitspringboot.entity.User;
+import com.cnjtg.gitspringboot.service.IUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -16,6 +18,9 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/rest/user")
 public class UserResource {
+
+    @Autowired
+    IUserService userService;
 
     @GetMapping("/getUser")
     public Results getUser() {
@@ -41,8 +46,7 @@ public class UserResource {
 
     @GetMapping("/listUser")
     public Results listUser() {
-        List<User> list = new ArrayList<>();
-
+        List<User> list = userService.listUser();
         Results results = Results.SUCCESS();
         results.setData(list);
         return results;
