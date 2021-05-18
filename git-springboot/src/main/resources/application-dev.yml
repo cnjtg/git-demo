@@ -42,3 +42,6 @@ spring:
 # mybatis
 mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
+swagger:
+  docket:
+    base-package: com.cnjtg.gitspringboot
