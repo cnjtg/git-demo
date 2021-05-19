@@ -3,7 +3,7 @@
     <ul>
       <li v-for="(item,index) in goods" :key="item.id">
         {{ index + 1 }}、{{ item.title }} ￥{{ item.price }}
-        <button @click="addCart(index)">添加购物车</button>
+        <el-button type="success" @click="addCart(index)">添加购物车</el-button>
       </li>
     </ul>
     <Cart :good="goods"></Cart>

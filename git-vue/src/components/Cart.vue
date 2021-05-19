@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>{{ title }}</h2>
-    <table border="1">
+<!--    <table border="1">
       <tr>
         <th>#</th>
         <th>商品</th>
@@ -27,7 +27,28 @@
         <td colspan="2">总价：{{ total }}</td>
       </tr>
       </tbody>
-    </table>
+    </table>-->
+
+    <el-table
+      ref="multipleTable"
+      :data="goods"
+      tooltip-effect="dark"
+      style="width: 100%"
+      @selection-change="handleSelectionChange">
+      <el-table-column type="selection" width="55"/>
+      <el-table-column prop="title" label="商品" width="200"/>
+      <el-table-column prop="price" label="价格" width="200"/>
+      <el-table-column label="数量" width="250">
+        <template slot-scope="scope">
+          <el-input-number v-model="scope.row.count" :min="1" :max="100" :step="1"/>
+        </template>
+      </el-table-column>
+      <el-table-column label="总价" width="200">
+        <template slot-scope="scope">
+          {{scope.row.count* scope.row.price}}
+        </template>
+      </el-table-column>
+    </el-table>
   </div>
 </template>
 
@@ -37,7 +58,7 @@ export default {
   props: ['title', 'good'],
   data() {
     return {
-      goods: []
+      goods: [],
     }
   },
   created() {
@@ -47,20 +68,20 @@ export default {
         //MARK 需要用push方式把count和active值初始化
         this.goods.push({
           ...good,
-          count:1,
+          count: 1,
           active: true
         })
-      }else{
+      } else {
         res.count++;
       }
     });
   },
-  watch:{
-    cart:{
-      handler(n,o){
+  watch: {
+    cart: {
+      handler(n, o) {
         this.goods.setLocalData(n)
       },
-      deep:true
+      deep: true
     }
   },
   computed: {
@@ -98,9 +119,12 @@ export default {
         this.remove(i);
       }
     },
-    setLocalData(n){
+    setLocalData(n) {
       //TODO 存储购物车
       console.log(JSON.stringify(n))
+    },
+    handleSelectionChange(val){
+      // this.goods = val;
     }
   },
 }
