@@ -1,5 +1,6 @@
 <template>
   <div>
+    <m-form-element></m-form-element>
     <ul>
       <li v-for="(item,index) in goods" :key="item.id">
         {{ index + 1 }}、{{ item.title }} ￥{{ item.price }}
@@ -13,11 +14,12 @@
 
 <script>
 import Cart from '@/components/Cart';
+import MFormElement from "@/components/FormElement";
 
 export default {
   name: "App",
   components: {
-    Cart
+    Cart,MFormElement
   }, data() {
     return {
       goods: [],
