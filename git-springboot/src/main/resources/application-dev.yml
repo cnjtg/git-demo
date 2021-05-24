@@ -7,7 +7,7 @@ server:
 user:
   username: ${random.value}
   age: "${random.int(0,100)}"
-  hobbies: ['游戏','运动']
+  hobbies: [ '游戏','运动' ]
   birthday: 2020/01/01
   uuid: ${random.uuid}
 
@@ -16,12 +16,9 @@ logging:
     com:
       cnjtg: info
 spring:
-#  mvc:
-#    view:
-#      prefix: classpath:/pages/
-#      suffix: .html
-  thymeleaf:
-    prefix: classpath:/pages/
+  freemarker:
+    cache: false
+    charset: utf-8
     suffix: .html
 
   datasource:
@@ -29,3 +26,22 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/db2020?useUnicode=true&characterEncoding=UTF-8&useSSL=false
     username: root
     password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+    dbcp2:
+      initial-size: 5
+      min-idle: 5
+    schema: classpath:sql/schema.sql
+    initialization-mode: never
+    druid:
+      stat-view-servlet:
+        enabled: true
+        login-username: admin
+        login-password: admin
+        reset-enable: true
+
+# mybatis
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+swagger:
+  docket:
+    base-package: com.cnjtg.gitspringboot
