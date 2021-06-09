@@ -1,0 +1,39 @@
+spring:
+  ##数据库连接信息
+  datasource:
+    # 数据源配置
+    url: jdbc:mysql://127.0.0.1:3306/activiti?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # SQLException: XAER_INVAL: Invalid arguments (or unsupported command)问题
+    xa:
+      properties:
+        pinGlobalTxToPhysicalConnection: true
+        useServerPrepStmts: true
+  # 参考配置https://www.cnblogs.com/liaojie970/p/8857710.html
+  activiti:
+    # 自动建表
+    database-schema: ACTIVITI
+    database-schema-update: true
+    history-level: full
+    db-history-used: true
+  thymeleaf:
+    mode: HTML
+    encoding: utf-8
+    # 禁用缓存
+    cache: false
+  application:
+    # 注册应用名
+    name: actdemo
+  mvc:
+    # 静态资源路径
+    static-path-pattern: /static/**
+  security:
+    user:
+      name: user
+      password: user
+#mybatis:
+#  # spring boot集成mybatis的方式打印sql
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+    <!--druid数据源-->
+    <bean id="dataSourceActiviti" class="com.alibaba.druid.pool.DruidDataSource">
+        <!--自己本地的数据库-->
+        <property name="url"
+                  value="jdbc:mysql://localhost:3306/activiti?useUnicode=true&amp;characterEncoding=utf-8&amp;usessl=false"/>
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+        <property name="initialSize" value="1"/>
+        <property name="maxActive" value="10"/>
+        <property name="filters" value="stat,slf4j"/>
+    </bean>
+
+
+    <!-- 单独创建事物管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSourceActiviti"/>
+    </bean>
+    <!--Spring集成-->
+    <!--要单独创建数据库，因为spring要单独对我们的事物做处理 事物是基于数据库的事物-->
+    <bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
+        <property name="dataSource" ref="dataSourceActiviti"/>
+        <!--数据库策略-->
+
+        <property name="databaseSchemaUpdate" value="true"/>
+        <!--注入事物管理器-->
+        <property name="transactionManager" ref="transactionManager"/>
+        <!--<property name="jobExecutorActivate" value="false" />-->
+        <property name="deploymentResources" value="classpath:/diagram/*.*.xml"/>
+
+        <!--是否使用历史数据-->
+        <property name="dbHistoryUsed" value="true"/>
+        <!--是否使用身份数据-->
+        <!--<property name="databaseTablePrefix" value="t_"/>-->
+
+        <!--默认属性，流程引擎可以根据传进去数据库的url 驱动等自动判断数据库，所以这个配置可以省略-->
+        <property name="databaseType" value="mysql"/>
+
+        <!--记录历史详情的级别 共4个级别 -->
+        <!--<property name="history" value="none" /> -->      <!-- 不记录历史流程，性能高，流程结束后不可读-->
+        <!--<property name="history" value="activity" />-->   <!-- 归档流程实例和活动实例，流程变量不同步-->
+        <!--<property name="history" value="audit" />-->      <!-- 默认值，在activiti基础上同步变量值，保持表单属性-->
+        <property name="history" value="full"/>              <!--全部记录，性能较差，记录所有实例和变量的细节变化-->
+
+        <!--是否开启我们的事件日志 true开启 act_evt_log -->
+        <property name="enableDatabaseEventLogging" value="true"/>
+
+
+
+    </bean>
+
+
+    <!--    &lt;!&ndash;构造流程引擎对象&ndash;&gt;-->
+    <!--    <bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">-->
+    <!--        &lt;!&ndash;指定流程引擎配置对象&ndash;&gt;-->
+    <!--        <property name="processEngineConfiguration" ref="processEngineConfiguration"/>-->
+    <!--    </bean>-->
+
+    <!--    &lt;!&ndash;把服务暴露给Spring&ndash;&gt;-->
+    <!--    &lt;!&ndash; 创建activiti提供的各种服务 &ndash;&gt;-->
+    <!--    &lt;!&ndash; 工作流仓储服务 &ndash;&gt; &lt;!&ndash;部署流程定义文件&ndash;&gt;-->
+    <!--    <bean id="repositoryService" factory-bean="processEngine"-->
+    <!--          factory-method="getRepositoryService"/>-->
+    <!--    &lt;!&ndash; 工作流运行服务 &ndash;&gt;-->
+    <!--    <bean id="runtimeService" factory-bean="processEngine"-->
+    <!--          factory-method="getRuntimeService"/>-->
+    <!--    &lt;!&ndash; 工作流任务服务 &ndash;&gt;-->
+    <!--    <bean id="taskService" factory-bean="processEngine"-->
+    <!--          factory-method="getTaskService"/>-->
+    <!--    &lt;!&ndash; 工作流历史数据服务 &ndash;&gt;-->
+    <!--    <bean id="historyService" factory-bean="processEngine"-->
+    <!--          factory-method="getHistoryService"/>-->
+    <!--    &lt;!&ndash; 工作流管理服务 &ndash;&gt;-->
+    <!--    <bean id="managementService" factory-bean="processEngine"-->
+    <!--          factory-method="getManagementService"/>-->
+    <!--    &lt;!&ndash; 工作流唯一服务（用户服务） &ndash;&gt;-->
+    <!--    <bean id="identityService" factory-bean="processEngine" factory-method="getIdentityService"/>-->
+
+    <!--    &lt;!&ndash; 表单服务 &ndash;&gt;-->
+    <!--    <bean id="formService" factory-bean="processEngine" factory-method="getFormService"/>-->
+    <!--    <bean id="dynamicBpmnService" factory-bean="processEngine" factory-method="getDynamicBpmnService"/>-->
+
+
+    <!--配置测试 Rule-->
+    <!--
+        <bean id="activitiRule" class="org.activiti.engine.test.ActivitiRule">
+            <property name="processEngine"  ref="processEngine"/>
+        </bean>
+    -->
+    <!-- <bean id="helloBean" class="com.su.test.HelloBean"></bean>-->
+    <!--=====================================================================-->
+</beans>
