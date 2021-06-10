@@ -1,4 +1,4 @@
-package com.cnjtg.utils;
+package com.cnjtg.activiti;
 
 /**
  * @author cnjtg
