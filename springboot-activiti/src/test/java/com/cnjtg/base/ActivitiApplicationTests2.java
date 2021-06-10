@@ -1,4 +1,4 @@
-package com.cnjtg;
+package com.cnjtg.base;
 
 import org.activiti.engine.*;
 import org.activiti.engine.delegate.DelegateTask;
@@ -57,7 +57,7 @@ class ActivitiApplicationTests2 {
      * 2、类方式
      *      <UserTask>
      *         <extensionElements>
-     *             <activiti:taskListener event="create" class="com.cnjtg.AssigneeListener"/>-->
+     *             <activiti:taskListener event="create" class="com.cnjtg.base.AssigneeListener"/>-->
      *         </extensionElements>
      *      </UserTask>
      *  使用监听类传值

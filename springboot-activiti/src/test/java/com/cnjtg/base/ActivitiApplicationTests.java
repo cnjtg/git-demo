@@ -1,4 +1,4 @@
-package com.cnjtg;
+package com.cnjtg.base;
 
 import org.activiti.engine.*;
 import org.activiti.engine.history.HistoricActivityInstance;

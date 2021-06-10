@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.cnjtg.utils.ActivitiUtils;
+import com.cnjtg.activiti.ActivitiUtils;
 import org.activiti.bpmn.model.BpmnModel;
 import org.activiti.engine.HistoryService;
 import org.activiti.engine.RepositoryService;

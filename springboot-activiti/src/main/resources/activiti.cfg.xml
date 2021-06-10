@@ -54,43 +54,41 @@
     </bean>
 
 
-    <!--    &lt;!&ndash;构造流程引擎对象&ndash;&gt;-->
-    <!--    <bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">-->
-    <!--        &lt;!&ndash;指定流程引擎配置对象&ndash;&gt;-->
-    <!--        <property name="processEngineConfiguration" ref="processEngineConfiguration"/>-->
-    <!--    </bean>-->
+        <!--构造流程引擎对象-->
+        <bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">
+            <!--指定流程引擎配置对象-->
+            <property name="processEngineConfiguration" ref="processEngineConfiguration"/>
+        </bean>
 
-    <!--    &lt;!&ndash;把服务暴露给Spring&ndash;&gt;-->
-    <!--    &lt;!&ndash; 创建activiti提供的各种服务 &ndash;&gt;-->
-    <!--    &lt;!&ndash; 工作流仓储服务 &ndash;&gt; &lt;!&ndash;部署流程定义文件&ndash;&gt;-->
-    <!--    <bean id="repositoryService" factory-bean="processEngine"-->
-    <!--          factory-method="getRepositoryService"/>-->
-    <!--    &lt;!&ndash; 工作流运行服务 &ndash;&gt;-->
-    <!--    <bean id="runtimeService" factory-bean="processEngine"-->
-    <!--          factory-method="getRuntimeService"/>-->
-    <!--    &lt;!&ndash; 工作流任务服务 &ndash;&gt;-->
-    <!--    <bean id="taskService" factory-bean="processEngine"-->
-    <!--          factory-method="getTaskService"/>-->
-    <!--    &lt;!&ndash; 工作流历史数据服务 &ndash;&gt;-->
-    <!--    <bean id="historyService" factory-bean="processEngine"-->
-    <!--          factory-method="getHistoryService"/>-->
-    <!--    &lt;!&ndash; 工作流管理服务 &ndash;&gt;-->
-    <!--    <bean id="managementService" factory-bean="processEngine"-->
-    <!--          factory-method="getManagementService"/>-->
-    <!--    &lt;!&ndash; 工作流唯一服务（用户服务） &ndash;&gt;-->
-    <!--    <bean id="identityService" factory-bean="processEngine" factory-method="getIdentityService"/>-->
+        <!--把服务暴露给Spring-->
+        <!-- 创建activiti提供的各种服务 -->
+        <!-- 工作流仓储服务 --> <!--部署流程定义文件-->
+        <bean id="repositoryService" factory-bean="processEngine"
+              factory-method="getRepositoryService"/>
+        <!-- 工作流运行服务 -->
+        <bean id="runtimeService" factory-bean="processEngine"
+              factory-method="getRuntimeService"/>
+        <!-- 工作流任务服务 -->
+        <bean id="taskService" factory-bean="processEngine"
+              factory-method="getTaskService"/>
+        <!-- 工作流历史数据服务 -->
+        <bean id="historyService" factory-bean="processEngine"
+              factory-method="getHistoryService"/>
+        <!-- 工作流管理服务 -->
+        <bean id="managementService" factory-bean="processEngine"
+              factory-method="getManagementService"/>
+        <!-- 工作流唯一服务（用户服务） -->
+<!--        <bean id="identityService" factory-bean="processEngine" factory-method="getIdentityService"/>-->
 
-    <!--    &lt;!&ndash; 表单服务 &ndash;&gt;-->
-    <!--    <bean id="formService" factory-bean="processEngine" factory-method="getFormService"/>-->
-    <!--    <bean id="dynamicBpmnService" factory-bean="processEngine" factory-method="getDynamicBpmnService"/>-->
+        <!-- 表单服务 -->
+<!--        <bean id="formService" factory-bean="processEngine" factory-method="getFormService"/>-->
+        <bean id="dynamicBpmnService" factory-bean="processEngine" factory-method="getDynamicBpmnService"/>
 
 
     <!--配置测试 Rule-->
-    <!--
         <bean id="activitiRule" class="org.activiti.engine.test.ActivitiRule">
             <property name="processEngine"  ref="processEngine"/>
         </bean>
-    -->
     <!-- <bean id="helloBean" class="com.su.test.HelloBean"></bean>-->
     <!--=====================================================================-->
 </beans>

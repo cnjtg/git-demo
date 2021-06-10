@@ -1,6 +1,5 @@
-package com.cnjtg;
+package com.cnjtg.base;
 
-import com.cnjtg.entity.Holiday;
 import org.activiti.engine.*;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.runtime.ProcessInstance;
@@ -14,9 +13,9 @@ import java.util.List;
 import java.util.Map;
 
 @SpringBootTest
-class VariableTest {
+class GroupTaskTest {
 
-    private static final String LEAVE = "Holiday";
+    private static final String LEAVE = "Holiday5";
 
 
     /**
@@ -31,9 +30,8 @@ class VariableTest {
         ProcessEngine engine = ProcessEngines.getDefaultProcessEngine();
         RepositoryService repositoryService = engine.getRepositoryService();
         Deployment deploy = repositoryService.createDeployment()
-                .addClasspathResource("diagram/holiday.bpmn")
-                .addClasspathResource("diagram/holiday.png")
-                .name("请假流程-流程变量")
+                .addClasspathResource("diagram/holiday5.bpmn")
+                .name("请假流程-分组任务")
                 .deploy();
 
         System.out.println("流程ID = " + deploy.getId());
@@ -50,29 +48,54 @@ class VariableTest {
         RuntimeService runtimeService = engine.getRuntimeService();
 
 
-        Map<String, Object> params = new HashMap<>();
 
-        Holiday holiday = new Holiday();
-        holiday.setId(1);
-        holiday.setUsername("tom");
-        //根据holiday.num的值改变流程的环节
-        holiday.setNum(1.0F);
-        holiday.setStartDate(new Date());
-        params.put("holiday", holiday);
-
-
-        ProcessInstance process = runtimeService.startProcessInstanceByKey(LEAVE, holiday.getId().toString(), params);
+        ProcessInstance process = runtimeService.startProcessInstanceByKey(LEAVE, "1004");
 
         System.out.println("流程ID= " + process.getId());
         System.out.println("流程ID= " + process.getProcessDefinitionId());
-        System.out.println("流程部署ID= " + process.getDeploymentId());
         System.out.println("活动ID= " + process.getActivityId());
     }
 
+    /**
+     * 拾取任务 （claim 接取任务，setAssignee（id,null） 归还任务）
+     * 此方法需要在main中执行,否则会和security冲突
+     */
+    public static void main(String[] args) {
+        ProcessEngine engine = ProcessEngines.getDefaultProcessEngine();
+        TaskService taskService = engine.getTaskService();
+
+        String candidate_users = "lisi";
+
+        List<Task> list = taskService.createTaskQuery()
+                .processInstanceBusinessKey("1004")
+                .taskCandidateUser(candidate_users)
+                .list();
+
+        list.forEach(task -> {
+            System.out.println(task.getId());
+            System.out.println(task.getName());
+            System.out.println(task.getAssignee());
+        });
+
+        list.forEach(task -> {
+            taskService.claim(task.getId(),candidate_users);
+            System.out.println(candidate_users +"拾取了["+task.getName()+"]任务");
+        });
+
+        list.forEach(task -> {
+            //将该任务处理人设置为空，相当于归还到组成员
+            taskService.setAssignee(task.getId(),null);
+            System.out.println(candidate_users + "归还了["+task.getName()+"]任务");
+        });
+    }
+
+    /**
+     * 处理任务
+     */
     @Test
     void dealTask() {
 
-        String taskAssignee = "zhaoliu";
+        String taskAssignee = "xiaozhang";
 
         ProcessEngine engine = ProcessEngines.getDefaultProcessEngine();
         TaskService taskService = engine.getTaskService();
