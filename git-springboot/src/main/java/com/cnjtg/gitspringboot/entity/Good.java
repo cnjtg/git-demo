@@ -9,8 +9,20 @@ import lombok.Data;
  */
 @Data
 public class Good {
+    /**
+     * id
+     */
     private Integer id;
+    /**
+     * 标题
+     */
     private String title;
+    /**
+     * 价格
+     */
     private Double price;
+    /**
+     * 数
+     */
     private Integer count;
 }

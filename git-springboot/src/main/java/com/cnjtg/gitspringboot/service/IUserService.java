@@ -13,20 +13,23 @@ public interface IUserService {
 
     /**
      * 列表
-     * @return
+     *
+     * @return {@link List<User>}
      */
     List<User> listUser();
 
     /**
      * 获取单个
-     * @param uuid
-     * @return
+     *
+     * @param uuid uuid
+     * @return {@link User}
      */
     User get(String uuid);
 
     /**
      * 保存
-     * @param user
+     *
+     * @param user 用户
      */
     void save(User user);
 }

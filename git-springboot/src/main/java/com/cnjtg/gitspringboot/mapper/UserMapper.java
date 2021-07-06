@@ -14,21 +14,24 @@ public interface UserMapper {
 
     /**
      * 列表
-     * @return
+     *
+     * @return {@link List<User>}
      */
     List<User> list();
 
 
     /**
+     * 保存用户
      *
-     * @param user
+     * @param user 用户
      */
     void saveUser(@Param("user") User user);
 
     /**
+     * 通过id
      *
-     * @param uuid
-     * @return
+     * @param uuid uuid
+     * @return {@link User}
      */
     User getById(String uuid);
 
