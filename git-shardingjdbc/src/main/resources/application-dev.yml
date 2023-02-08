@@ -1,0 +1,9 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+mybatis:
+  type-aliases-package: com.cnjtg.**.model.*
+  mapper-locations: classpath*:/com/cnjtg/*/mapper/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

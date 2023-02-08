@@ -1,0 +1,41 @@
+spring:
+  shardingsphere:
+    datasource:
+      # 定义数据源
+      names: dfsw-smp-dev,dfsw-smp-db
+      # 默认数据源
+      dfsw-smp-dev:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/dfsw_smp_dev?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true&allowMultiQueries=TRUE
+        username: root
+        password: 'root'
+      # 2022年数据源
+      dfsw-smp-db:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/dfsw_smp_db?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true&allowMultiQueries=TRUE
+        username: root
+        password: 'root'
+
+    sharding:
+      # 默认数据源，未分片的表默认执行库
+      default-data-source-name: dfsw-smp-dev
+      # 分库分表
+      tables:
+        # 其中一个要分表的表名，逻辑表名
+        smp_event_report:
+          # 分表
+          table-strategy:
+            inline:
+              # 以表中的哪个字段
+              sharding-column: start_time
+              algorithm-expression: test$->{start_time}
+          # 主键
+          key-generator:
+            column: event_id
+            type: SNOWFLAKE
+    props:
+      # 打开sql输出日志
+      sql:
+        show: true
