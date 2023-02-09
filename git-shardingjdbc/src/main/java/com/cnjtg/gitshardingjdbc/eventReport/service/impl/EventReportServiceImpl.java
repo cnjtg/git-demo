@@ -22,13 +22,9 @@ public class EventReportServiceImpl implements EventReportService {
     @Autowired
     private EventReportDao eventReportDao;
 
-
-
     @Override
     public List<EventReportDto> selectList(EventReportDto eventReportDto) {
-        long start = System.currentTimeMillis();
-        List<EventReportDto> list = eventReportDao.selectList(eventReportDto);
-        return list;
+        return eventReportDao.selectList(eventReportDto);
     }
 
 

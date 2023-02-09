@@ -17,10 +17,8 @@ public class EventReportController {
     @Autowired
     private EventReportService eventReportService;
 
-
     @GetMapping(value = "/page")
     public List<EventReportDto> listPage(EventReportDto eventreportDto) {
-
         return eventReportService.selectList(eventreportDto);
     }
 
