@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cnjtg.gitshardingjdbc.eventReport.dao.EventReportDao">
+    <resultMap id="BaseResultMap" type="com.cnjtg.gitshardingjdbc.eventReport.model.EventReport">
+        <id column="event_id" jdbcType="VARCHAR" property="eventId"/>
+        <result column="center_code" jdbcType="VARCHAR" property="centerCode"/>
+        <result column="event_name" jdbcType="VARCHAR" property="eventName"/>
+        <result column="event_rule_id" jdbcType="BIGINT" property="eventRuleId"/>
+        <result column="event_type" jdbcType="VARCHAR" property="eventType"/>
+        <result column="start_time" property="startTime"/>
+        <result column="end_time" property="endTime"/>
+        <result column="threat_level" jdbcType="INTEGER" property="threatLevel"/>
+        <result column="reliability_level" jdbcType="INTEGER" property="reliabilityLevel"/>
+        <result column="attack_dir" jdbcType="INTEGER" property="attackDir"/>
+        <result column="result" jdbcType="INTEGER" property="result"/>
+        <result column="kill_chain_stage" jdbcType="INTEGER" property="killChainStage"/>
+        <result column="occur_count" jdbcType="INTEGER" property="occurCount"/>
+        <result column="event_suggestion" jdbcType="VARCHAR" property="eventSuggestion"/>
+        <result column="create_time" property="createTime"/>
+        <result column="smp_update_time" property="smpUpdateTime"/>
+        <result column="smp_create_time" property="smpCreateTime"/>
+    </resultMap>
+    <resultMap type="com.cnjtg.gitshardingjdbc.eventReport.dto.EventReportDto" id="EventReportDtoMap">
+        <id column="event_id" jdbcType="VARCHAR" property="eventId"/>
+        <result column="center_code" jdbcType="VARCHAR" property="centerCode"/>
+        <result column="event_name" jdbcType="VARCHAR" property="eventName"/>
+        <result column="event_rule_id" jdbcType="BIGINT" property="eventRuleId"/>
+        <result column="event_type" jdbcType="VARCHAR" property="eventType"/>
+        <result column="start_time" property="startTime"/>
+        <result column="end_time" property="endTime"/>
+        <result column="threat_level" jdbcType="INTEGER" property="threatLevel"/>
+        <result column="reliability_level" jdbcType="INTEGER" property="reliabilityLevel"/>
+        <result column="attack_dir" jdbcType="INTEGER" property="attackDir"/>
+        <result column="result" jdbcType="INTEGER" property="result"/>
+        <result column="kill_chain_stage" jdbcType="INTEGER" property="killChainStage"/>
+        <result column="occur_count" jdbcType="INTEGER" property="occurCount"/>
+        <result column="event_suggestion" jdbcType="VARCHAR" property="eventSuggestion"/>
+        <result column="create_time" property="createTime"/>
+        <result column="smp_update_time" property="smpUpdateTime"/>
+        <result column="smp_create_time" property="smpCreateTime"/>
+        <result column="smp_orgid" jdbcType="VARCHAR" property="smpOrgid"/>
+        <result column="smp_orgName" jdbcType="VARCHAR" property="smpOrgName"/>
+        <result column="center_name" jdbcType="VARCHAR" property="centerName"/>
+        <result column="alarm_level" property="alarmLevel"/>
+        <result column="source_ports" property="sourcePorts"/>
+        <result column="destination_ports" property="destinationPorts"/>
+        <result column="dns_qname" property="dnsQname"/>
+        <result column="dns_rcode" property="dnsRcode"/>
+        <result column="dns_answer1" property="dnsAnswer1"/>
+        <result column="dns_answer2" property="dnsAnswer2"/>
+        <result column="is_match" property="isMatch"/>
+        <result column="martch_name" property="martchName"/>
+        <result column="source_ips" property="sourceIps"/>
+        <result column="destination_ips" property="destinationIps"/>
+        <result column="handle" property="handle"/>
+        <result column="info" property="info"/>
+        <result column="source_alarm_level" property="sourceAlarmLevel"/>
+        <result column="rule_name" property="ruleName"/>
+    </resultMap>
+    <resultMap type="com.cnjtg.gitshardingjdbc.eventReport.dto.EventReportExportDto" id="EventReportExportDtoMap">
+        <id column="event_id" jdbcType="VARCHAR" property="eventId"/>
+        <result column="center_code" jdbcType="VARCHAR" property="centerCode"/>
+        <result column="event_name" jdbcType="VARCHAR" property="eventName"/>
+        <result column="event_rule_id" jdbcType="BIGINT" property="eventRuleId"/>
+        <result column="event_type" jdbcType="VARCHAR" property="eventType"/>
+        <result column="start_time" property="startTime"/>
+        <result column="end_time" property="endTime"/>
+        <result column="threat_level" jdbcType="INTEGER" property="threatLevel"/>
+        <result column="reliability_level" jdbcType="INTEGER" property="reliabilityLevel"/>
+        <result column="attack_dir" jdbcType="INTEGER" property="attackDir"/>
+        <result column="result" jdbcType="INTEGER" property="result"/>
+        <result column="kill_chain_stage" jdbcType="INTEGER" property="killChainStage"/>
+        <result column="occur_count" jdbcType="INTEGER" property="occurCount"/>
+        <result column="event_suggestion" jdbcType="VARCHAR" property="eventSuggestion"/>
+        <result column="create_time" property="createTime"/>
+        <result column="smp_update_time" property="smpUpdateTime"/>
+        <result column="smp_create_time" property="smpCreateTime"/>
+        <result column="smp_orgid" jdbcType="VARCHAR" property="smpOrgid"/>
+        <result column="smp_orgName" jdbcType="VARCHAR" property="smpOrgName"/>
+        <result column="center_name" jdbcType="VARCHAR" property="centerName"/>
+        <result column="alarm_level" property="alarmLevel"/>
+
+        <result column="sIp" property="sIp"/>
+        <result column="sPort" property="sPort"/>
+        <result column="sCity" property="sCity"/>
+        <result column="sDeviceName" property="sDeviceName"/>
+        <result column="sContact" property="sContact"/>
+        <result column="sContactTel" property="sContactTel"/>
+        <result column="sCenterCode" property="sCenterCode"/>
+        <result column="sCenterName" property="sCenterName"/>
+
+        <result column="dIp" property="dIp"/>
+        <result column="dPort" property="dPort"/>
+        <result column="dCity" property="dCity"/>
+        <result column="dDeviceName" property="dDeviceName"/>
+        <result column="dContact" property="dContact"/>
+        <result column="dContactTel" property="dContactTel"/>
+        <result column="dCenterCode" property="dCenterCode"/>
+        <result column="dCenterName" property="dCenterName"/>
+
+        <result column="source_ports" property="sourcePorts"/>
+        <result column="destination_ports" property="destinationPorts"/>
+        <result column="dns_qname" property="dnsQname"/>
+        <result column="dns_rcode" property="dnsRcode"/>
+        <result column="dns_answer1" property="dnsAnswer1"/>
+        <result column="dns_answer2" property="dnsAnswer2"/>
+        <result column="is_match" property="isMatch"/>
+        <result column="martch_name" property="martchName"/>
+
+        <result column="source_ips" property="sourceIps"/>
+        <result column="destination_ips" property="destinationIps"/>
+        <result column="handle" property="handle"/>
+    </resultMap>
+    <!--查询单个-->
+
+
+    <select id="selectList" resultMap="EventReportExportDtoMap">
+        SET SESSION group_concat_max_len = 5000000;
+        SELECT * FROM smp_event_report t
+        INNER JOIN (
+            SELECT
+            t1.event_id,
+            t3.orgName AS smp_orgName,
+            t3.orgId AS smp_orgid,
+            ANY_VALUE(t4.alarm_level) alarm_level,
+            ANY_VALUE(t4.handle) handle,
+            t2.center_name AS center_name
+            FROM smp_event_report t1
+            LEFT JOIN smp_event_analyzed t4 on t1.event_id = t4.event_id
+            INNER JOIN op_node_info t2 on t1.center_code = t2.center_code
+            INNER JOIN frame_orgstruc_orgunit t3 on t2.smp_orgid=t3.orgId
+            <include refid="BASE_WHERE"/>
+            GROUP BY t1.event_id
+        ) t1 ON t.event_id = t1.event_id
+        ORDER BY t.start_time DESC
+        limit 10000
+    </select>
+
+    <sql id="BASE_WHERE">
+        <where>
+            <if test="eventReportDto.orgQueryCode != null and eventReportDto.orgQueryCode != ''">
+                and t3.queryCode like #{eventReportDto.orgQueryCode} and t3.deleted = 0
+            </if>
+            <if test="eventReportDto.centerCode != null and eventReportDto.centerCode != ''">
+                and t1.center_code = #{eventReportDto.centerCode}
+            </if>
+
+            <if test="eventReportDto.sourceIp != null and eventReportDto.sourceIp != ''">
+                <choose>
+                    <when test="eventReportDto.sourceIp.indexOf('!') == 0">
+                        <bind name="sourceIpCondition" value="eventReportDto.sourceIp.split('!')[1]"/>
+                        and source_ips not like concat('%;',#{sourceIpCondition},';%')
+                    </when>
+                    <when test="eventReportDto.sourceIp.indexOf('！') == 0">
+                        <bind name="sourceIpCondition" value="eventReportDto.sourceIp.split('！')[1]"/>
+                        and source_ips not like concat('%;',#{sourceIpCondition},';%')
+                    </when>
+                    <otherwise>
+                        and source_ips like concat('%;',#{eventReportDto.sourceIp},';%')
+                    </otherwise>
+                </choose>
+            </if>
+            <if test="eventReportDto.destinationIp != null and eventReportDto.destinationIp != ''">
+                <choose>
+                    <when test="eventReportDto.destinationIp.indexOf('!') == 0">
+                        <bind name="destinationIpCondition" value="eventReportDto.destinationIp.split('!')[1]"/>
+                        and destination_ips not like concat('%;',#{destinationIpCondition},';%')
+                    </when>
+                    <when test="eventReportDto.destinationIp.indexOf('！') == 0">
+                        <bind name="destinationIpCondition" value="eventReportDto.destinationIp.split('！')[1]"/>
+                        and destination_ips not like concat('%;',#{destinationIpCondition},';%')
+                    </when>
+                    <otherwise>
+                        and destination_ips like concat('%;',#{eventReportDto.destinationIp},';%')
+                    </otherwise>
+                </choose>
+            </if>
+            <if test="eventReportDto.eventName != null and eventReportDto.eventName != ''">
+                <choose>
+                    <when test="eventReportDto.eventName.indexOf('!') == 0">
+                        <bind name="eventNameCondition" value="eventReportDto.eventName.split('!')[1]"/>
+                        and event_name not like #{eventNameCondition}
+                    </when>
+                    <when test="eventReportDto.eventName.indexOf('！') == 0">
+                        <bind name="eventNameCondition" value="eventReportDto.eventName.split('！')[1]"/>
+                        and event_name not like #{eventNameCondition}
+                    </when>
+                    <otherwise>
+                        and event_name like #{eventReportDto.eventName}
+                    </otherwise>
+                </choose>
+            </if>
+            <if test="eventReportDto.threatLevels != null and eventReportDto.threatLevels != ''">
+                and threat_level in (${eventReportDto.threatLevels})
+            </if>
+            <if test="eventReportDto.result != null">
+                and result = #{eventReportDto.result}
+            </if>
+            <if test="eventReportDto.eventType != null and eventReportDto.eventType != ''">
+                <choose>
+                    <when test="eventReportDto.eventType.indexOf('!') == 0">
+                        <bind name="eventTypeCondition" value="eventReportDto.eventType.split('!')[1]"/>
+                        and t1.event_type not like concat('%;',#{eventTypeCondition},';%')
+                    </when>
+                    <when test="eventReportDto.eventType.indexOf('！') == 0">
+                        <bind name="eventTypeCondition" value="eventReportDto.eventType.split('！')[1]"/>
+                        and t1.event_type not like concat('%;',#{eventTypeCondition},';%')
+                    </when>
+                    <otherwise>
+                        and t1.event_type like #{eventReportDto.eventType}
+                    </otherwise>
+                </choose>
+            </if>
+            <if test="eventReportDto.searchBeginTime != null">
+                and start_time &gt;= #{eventReportDto.searchBeginTime}
+            </if>
+            <if test="eventReportDto.searchEndTime !=null">
+                and start_time &lt;= #{eventReportDto.searchEndTime}
+            </if>
+            <if test="eventReportDto.sourcePorts != null and eventReportDto.sourcePorts != ''">
+                <choose>
+                    <when test="eventReportDto.sourcePorts.indexOf('!') == 0">
+                        <bind name="sourcePortsCondition" value="eventReportDto.sourcePorts.split('!')[1]"/>
+                        and t1.source_ports not like concat('%;',#{sourcePortsCondition},';%')
+                    </when>
+                    <when test="eventReportDto.sourcePorts.indexOf('！') == 0">
+                        <bind name="sourcePortsCondition" value="eventReportDto.sourcePorts.split('！')[1]"/>
+                        and t1.source_ports not like concat('%;',#{sourcePortsCondition},';%')
+                    </when>
+                    <otherwise>
+                        and t1.source_ports like concat('%;',#{eventReportDto.sourcePorts},';%')
+                    </otherwise>
+                </choose>
+            </if>
+            <if test="eventReportDto.destinationPorts != null and eventReportDto.destinationPorts != ''">
+                <choose>
+                    <when test="eventReportDto.destinationPorts.indexOf('!') == 0">
+                        <bind name="destinationPortsCondition" value="eventReportDto.destinationPorts.split('!')[1]"/>
+                        and t1.destination_ports not like concat('%;',#{destinationPortsCondition},';%')
+                    </when>
+                    <when test="eventReportDto.destinationPorts.indexOf('！') == 0">
+                        <bind name="destinationPortsCondition" value="eventReportDto.destinationPorts.split('！')[1]"/>
+                        and t1.destination_ports not like concat('%;',#{destinationPortsCondition},';%')
+                    </when>
+                    <otherwise>
+                        and t1.destination_ports like concat('%;',#{eventReportDto.destinationPorts},';%')
+                    </otherwise>
+                </choose>
+            </if>
+            <if test="eventReportDto.dnsQname != null and eventReportDto.dnsQname != ''">
+                <choose>
+                    <when test="eventReportDto.dnsQname.indexOf('!') == 0">
+                        <bind name="dnsQnameCondition" value="eventReportDto.dnsQname.split('!')[1]"/>
+                        and t1.dns_qname not like concat('%;',#{dnsQnameCondition},';%')
+                    </when>
+                    <when test="eventReportDto.dnsQname.indexOf('！') == 0">
+                        <bind name="dnsQnameCondition" value="eventReportDto.dnsQname.split('！')[1]"/>
+                        and t1.dns_qname not like concat('%;',#{dnsQnameCondition},';%')
+                    </when>
+                    <otherwise>
+                        and t1.dns_qname like concat('%;',#{eventReportDto.dnsQname},';%')
+                    </otherwise>
+                </choose>
+            </if>
+            <if test="eventReportDto.dnsAnswer != null and eventReportDto.dnsAnswer != ''">
+                <choose>
+                    <when test="eventReportDto.dnsAnswer.indexOf('!') == 0">
+                        <bind name="dnsAnswerCondition" value="eventReportDto.dnsAnswer.split('!')[1]"/>
+                        and (t1.dns_Answer1 not like concat('%;',#{dnsAnswerCondition},';%') and t1.dns_Answer2 not like
+                        concat('%;',#{dnsAnswerCondition},';%'))
+                    </when>
+                    <when test="eventReportDto.dnsAnswer.indexOf('！') == 0">
+                        <bind name="dnsAnswerCondition" value="eventReportDto.dnsAnswer.split('！')[1]"/>
+                        and (t1.dns_Answer1 not like concat('%;',#{dnsAnswerCondition},';%') and t1.dns_Answer2 not like
+                        concat('%;',#{dnsAnswerCondition},';%'))
+                    </when>
+                    <otherwise>
+                        and (t1.dns_Answer1 like concat('%;',#{eventReportDto.dnsAnswer},';%')
+                        or t1.dns_Answer2 like concat('%;',#{eventReportDto.dnsAnswer},';%'))
+                    </otherwise>
+                </choose>
+            </if>
+            <if test="eventReportDto.dnsRcode != null and eventReportDto.dnsRcode != ''">
+                <choose>
+                    <when test="eventReportDto.dnsRcode.indexOf('!') == 0">
+                        <bind name="dnsRcodeCondition" value="eventReportDto.dnsRcode.split('!')[1]"/>
+                        and t1.dns_rcode not like #{dnsRcodeCondition}
+                    </when>
+                    <when test="eventReportDto.dnsRcode.indexOf('！') == 0">
+                        <bind name="dnsRcodeCondition" value="eventReportDto.dnsRcode.split('！')[1]"/>
+                        and t1.dns_rcode not like #{dnsRcodeCondition}
+                    </when>
+                    <otherwise>
+                        and t1.dns_rcode like concat('%;',#{eventReportDto.dnsRcode},';%')
+                    </otherwise>
+                </choose>
+            </if>
+            <if test="eventReportDto.isMatch != null">
+                and t1.is_match = #{eventReportDto.isMatch}
+            </if>
+            <if test="eventReportDto.alarmLevels != null and eventReportDto.alarmLevels != ''">
+                and (
+                <foreach item="item" index="index" collection="eventReportDto.alarmLevels.split(',')" separator=" or ">
+                    <choose>
+                        <when test="item == 5 ">
+                            ( t4.alarm_level is null  or t4.alarm_level  = 4)
+                        </when>
+                        <otherwise>
+                            t4.alarm_level = #{item}
+                        </otherwise>
+                    </choose>
+                </foreach>
+                )
+            </if>
+            <if test="eventReportDto.occurCount1 != null">
+                and t1.occur_count &gt;= #{eventReportDto.occurCount1}
+            </if>
+            <if test="eventReportDto.occurCount2 != null">
+                and t1.occur_count &lt;= #{eventReportDto.occurCount2}
+            </if>
+        </where>
+    </sql>
+
+
+
+</mapper>

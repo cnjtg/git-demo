@@ -1,5 +1,12 @@
 spring:
   profiles:
     include: dev,sharding_jdbc
-server:
+
+  devtools:
+    add-properties: false
   port: 80
+
+logging:
+  level:
+    web: debug
+
